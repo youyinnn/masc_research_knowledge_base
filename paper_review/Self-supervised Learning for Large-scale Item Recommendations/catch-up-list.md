@@ -46,37 +46,34 @@
       >
       > [Network congestion](https://en.wikipedia.org/wiki/Network_congestion) is often taken into consideration while designing backbones.
 
-   2.
-
 10. precision & recall:
 
-11. https://www.youtube.com/watch?v=qWfzIYCvBqo
+    1. https://www.youtube.com/watch?v=qWfzIYCvBqo
+    2. [Recall and Precision at k for Recommender Systems](https://medium.com/@m_n_malaeb/recall-and-precision-at-k-for-recommender-systems-618483226c54#:~:text=Recall%20at%20k%20is%20the,in%20the%20top%2Dk%20results)
 
-12. [Recall and Precision at k for Recommender Systems](https://medium.com/@m_n_malaeb/recall-and-precision-at-k-for-recommender-systems-618483226c54#:~:text=Recall%20at%20k%20is%20the,in%20the%20top%2Dk%20results)
+       > _Precision at k is the proportion of recommended items in the top-k set that are relevant_
 
-    - > _Precision at k is the proportion of recommended items in the top-k set that are relevant_
+       Its interpretation is as follows. Suppose that my precision at 10 in a top-10 recommendation problem is 80%. This means that 80% of the recommendation I make are relevant to the user.
 
-      Its interpretation is as follows. Suppose that my precision at 10 in a top-10 recommendation problem is 80%. This means that 80% of the recommendation I make are relevant to the user.
+       Mathematically precision@k is defined as follows:
 
-      Mathematically precision@k is defined as follows:
+       ```
+       Precision@k = (# of recommended items @k that are relevant) / (# of recommended items @k)
+       ```
 
-      ```
-      Precision@k = (# of recommended items @k that are relevant) / (# of recommended items @k)
-      ```
+       > _Recall at k is the proportion of relevant items found in the top-k recommendations_
 
-      - > _Recall at k is the proportion of relevant items found in the top-k recommendations_
+       Suppose that we computed recall at 10 and found it is 40% in our top-10 recommendation system. This means that 40% of the total number of the relevant items appear in the top-k results.
 
-        Suppose that we computed recall at 10 and found it is 40% in our top-10 recommendation system. This means that 40% of the total number of the relevant items appear in the top-k results.
+       Mathematically recall@k is defined as follows:
 
-        Mathematically recall@k is defined as follows:
+       ```
+       Recall@k = (# of recommended items @k that are relevant) / (total # of relevant items)
+       ```
 
-        ```
-        Recall@k = (# of recommended items @k that are relevant) / (total # of relevant items)
-        ```
+    3. [How mean Average Precision at k (mAP@k) can be more useful than other evaluation metrics](https://medium.com/@misty.mok/how-mean-average-precision-at-k-map-k-can-be-more-useful-than-other-evaluation-metrics-6881e0ee21a9)
 
-13. [How mean Average Precision at k (mAP@k) can be more useful than other evaluation metrics](https://medium.com/@misty.mok/how-mean-average-precision-at-k-map-k-can-be-more-useful-than-other-evaluation-metrics-6881e0ee21a9)
-
-14. model-agnostic:
+11. model-agnostic:
 
     1. [Model-Agnostic Methods for Interpreting any Machine Learning Model](https://towardsdatascience.com/model-agnostic-methods-for-interpreting-any-machine-learning-model-4f10787ef504#:~:text=Interpretable%20models%20are%20models%20who,vector%20machines%20to%20neural%20networks.)
 
@@ -86,6 +83,6 @@
 
        - Model-agnostic methods are methods you can use for any machine learning model, from support vector machines to neural networks.
 
-15. down-sampled
+12. down-sampled
 
     1. [Imbalanced Data](https://developers.google.com/machine-learning/data-prep/construct/sampling-splitting/imbalanced-data)
