@@ -23,6 +23,16 @@ const getIssues = async function () {
   return data;
 };
 
+const culZone = {
+  start: "<!-- cul start -->",
+  end: "<!-- cul end -->",
+};
+
+const noteLinkZone = {
+  start: "<!-- note start -->",
+  end: "<!-- note end -->",
+};
+
 getIssues().then((data) => {
   matchPaperReviewAndUpdateCatchUp(data);
 });
@@ -55,19 +65,19 @@ function updateIssue(issue, paperName) {
   });
   if (paperNoteFilePath !== null) {
     console.log("note file exists");
-    if (noteLinkBlockNotExist(issueBody)) {
+    if (!zoneExist(issueBody, noteLinkZone)) {
       console.log("create note link");
       let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/paper_review/${paperName}/${paperNoteFilePath}`;
-      newBody =
-        issueBody +
-        `\n\n-------\n\n<!-- note start -->\n\n[Paper review](${encodeURI(
-          url
-        )})\n\n<!-- note end -->
-        `;
+      newBody = addZoneContent(
+        issueBody,
+        noteLinkZone,
+        `[Paper review](${encodeURI(url)})`
+      );
       updateIssueBody(issue.number, newBody).finally(() => {
         updateCul(paper_dir, newBody, issue.number);
       });
     } else {
+      console.log("note link exist");
       updateCul(paper_dir, issueBody, issue.number);
     }
   } else {
@@ -81,7 +91,7 @@ function updateCul(paper_dir, issueBody, issueNumber) {
   fs.stat(paper_catch_up_path, function (err, stat) {
     if (err == null) {
       console.log("catch up file exists");
-      let culIfExist = getCatchUpListBlockFromIssueBody(issueBody);
+      let culIfExist = getZoneContent(issueBody, culZone);
       let newBody = null;
       const culData = fs
         .readFileSync(decodeURIComponent(paper_catch_up_path), "utf8")
@@ -89,24 +99,24 @@ function updateCul(paper_dir, issueBody, issueNumber) {
 
       if (culIfExist === null) {
         console.log("create cul");
-        newBody =
-          issueBody +
-          `\n\n-------\n\n<!-- cul start -->\n\n<details><summary>Catch-up knowledge</summary>\n\n${culData}\n\n</details>\n\n<!-- cul end -->
-        `;
+        newBody = addZoneContent(
+          issueBody,
+          culZone,
+          `<details><summary>Catch-up knowledge</summary>\n\n${culData}\n\n</details>`
+        );
       } else {
+        console.log("cul exist");
         culIfExist = culIfExist
           .replace("<details><summary>Catch-up knowledge</summary>", "")
           .replace("</details>", "");
 
-        // console.log(culData.trim());
-        // console.log("==========");
-        // console.log(culIfExist.trim());
-
-        if (culData.trim() === culIfExist.trim()) {
+        // it is all about the fucking whitespace
+        if (culIfExist.replace(/\s/g, "") === culData.replace(/\s/g, "")) {
           console.log("same cul");
         } else {
           console.log("diff cul");
-          newBody = replaceCulStr(issueBody, culData);
+          let replcaement = `<details><summary>Catch-up knowledge</summary>\n\n${culData}\n\n</details>`;
+          newBody = replaceZoneContent(issueBody, culZone, replcaement);
         }
       }
       if (newBody !== null) {
@@ -119,28 +129,39 @@ function updateCul(paper_dir, issueBody, issueNumber) {
   });
 }
 
-function getCatchUpListBlockFromIssueBody(issueBody) {
-  let startIdx = issueBody.indexOf("<!-- cul start -->");
+function zoneExist(text, zone) {
+  return text.indexOf(zone.start) > -1;
+}
+
+function getZoneContent(text, zone) {
+  let startIdx = text.indexOf(zone.start);
   if (startIdx > -1) {
-    console.log("cul exist");
-    let endIdx = issueBody.indexOf("<!-- cul end -->");
-    return issueBody.substring(startIdx + 18, endIdx).trim();
+    let endIdx = text.indexOf(zone.end);
+    return text.substring(startIdx + zone.start.length, endIdx).trim();
   } else {
     return null;
   }
 }
 
-function noteLinkBlockNotExist(issueBody) {
-  return issueBody.indexOf("<!-- note start -->") === -1;
+function addZoneContent(text, zone, content) {
+  return (
+    text +
+    `\n-------\n` +
+    `\n${zone.start}\n` +
+    `\n${content}\n` +
+    `\n${zone.end}\n`
+  );
 }
 
-function replaceCulStr(issueBody, culData) {
-  let startIdx = issueBody.indexOf("<!-- cul start -->");
-  let endIdx = issueBody.indexOf("<!-- cul end -->");
+function replaceZoneContent(text, zone, replacement) {
+  let startIdx = text.indexOf(zone.start);
+  let endIdx = text.indexOf(zone.end);
   return (
-    issueBody.substring(0, startIdx + 19) +
-    `\n\n<details><summary>Catch-up knowledge</summary>\n\n${culData}\n\n</details>\n\n` +
-    issueBody.substring(endIdx, issueBody.length)
+    text.substring(0, startIdx + zone.start.length) +
+    "\n\n" +
+    replacement +
+    "\n\n" +
+    text.substring(endIdx, text.length)
   );
 }
 
