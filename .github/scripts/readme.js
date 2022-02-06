@@ -40,6 +40,27 @@ const jobIssue = [];
 const researchIssue = [];
 const projectIssue = [];
 
+const gLabel = {
+  title: "",
+  color: "",
+};
+const fLabel = {
+  title: "",
+  color: "",
+};
+const jLabel = {
+  title: "",
+  color: "",
+};
+const rLabel = {
+  title: "",
+  color: "",
+};
+const pLabel = {
+  title: "",
+  color: "",
+};
+
 function updateReadme(data) {
   for (let issue of data) {
     let issueTitle = issue.title;
@@ -51,53 +72,68 @@ function updateReadme(data) {
           title: issueTitle,
           number: issueNumber,
         });
+        gLabel.color = labels.color;
       }
       if (labelName === "CurrentlyFocusing") {
         focusIssue.push({
           title: issueTitle,
           number: issueNumber,
         });
+        fLabel.color = labels.color;
       }
       if (labelName === "Job-oriented") {
         jobIssue.push({
           title: issueTitle,
           number: issueNumber,
         });
+        jLabel.color = labels.color;
       }
       if (labelName === "Research-oriented") {
         researchIssue.push({
           title: issueTitle,
           number: issueNumber,
         });
+        rLabel.color = labels.color;
       }
       if (labelName === "Project-oriented") {
         projectIssue.push({
           title: issueTitle,
           number: issueNumber,
         });
+        pLabel.color = labels.color;
       }
     }
   }
 
   let mdContent = [];
   mdContent.push("#### Issues");
-  mdContent.push("##### Goals");
+  mdContent.push(
+    `##### ![](https://img.shields.io:/badge/Goals-${gLabel.color}?style=for-the-badge)`
+  );
   for (let i of goalsIssue) {
     mdContent.push(`- ${issueAbbrlink(i.title, i.number)}`);
   }
-  mdContent.push("##### Currentlt Focusing");
+  mdContent.push(
+    `##### ![](https://img.shields.io:/badge/CurrentlyFocusing-${fLabel.color}?style=for-the-badge)`
+  );
   for (let i of focusIssue) {
     mdContent.push(`- ${issueAbbrlink(i.title, i.number)}`);
   }
-  mdContent.push("##### Job-oriented");
+  mdContent.push(
+    `##### ![](https://img.shields.io:/badge/Job-oriented-${jLabel.color}?style=for-the-badge)`
+  );
   for (let i of jobIssue) {
     mdContent.push(`- ${issueAbbrlink(i.title, i.number)}`);
   }
-  mdContent.push("##### Research-oriented");
+  mdContent.push(
+    `##### ![](https://img.shields.io:/badge/Research-oriented-${rLabel.color}?style=for-the-badge)`
+  );
   for (let i of researchIssue) {
     mdContent.push(`- ${issueAbbrlink(i.title, i.number)}`);
   }
-  mdContent.push("##### Project-oriented");
+  mdContent.push(
+    `##### ![](https://img.shields.io:/badge/Project-oriented-${pLabel.color}?style=for-the-badge)`
+  );
   for (let i of projectIssue) {
     mdContent.push(`- ${issueAbbrlink(i.title, i.number)}`);
   }
