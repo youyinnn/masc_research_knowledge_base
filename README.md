@@ -7,7 +7,7 @@
 
 #### Issues
 
-##### Goals
+##### ![](https://img.shields.io:/badge/Goals-6FE05F?style=for-the-badge)
 
 - [Knowledge gathering: XAI](https://github.com/youyinnn/masc_research_knowledge_base/issues/7)
 
@@ -15,17 +15,17 @@
 
 - [For Ubisoft](https://github.com/youyinnn/masc_research_knowledge_base/issues/1)
 
-##### Currentlt Focusing
+##### ![](https://img.shields.io:/badge/CurrentlyFocusing-D93F0B?style=for-the-badge)
 
 - [Paper review: Axiomatic Attribution for Deep Networks](https://github.com/youyinnn/masc_research_knowledge_base/issues/10)
 
 - [Knowledge gathering: XAI](https://github.com/youyinnn/masc_research_knowledge_base/issues/7)
 
-##### Job-oriented
+##### ![](https://img.shields.io:/badge/Job-oriented-0D4EB9?style=for-the-badge)
 
 - [For Ubisoft](https://github.com/youyinnn/masc_research_knowledge_base/issues/1)
 
-##### Research-oriented
+##### ![](https://img.shields.io:/badge/Research-oriented-fbca04?style=for-the-badge)
 
 - [Study: Self-supervised learning: The dark matter of intelligence](https://github.com/youyinnn/masc_research_knowledge_base/issues/6)
 
@@ -37,7 +37,7 @@
 
 - [For Research Knowledge](https://github.com/youyinnn/masc_research_knowledge_base/issues/2)
 
-##### Project-oriented
+##### ![](https://img.shields.io:/badge/Project-oriented-d4c5f9?style=for-the-badge)
 
 - [Paper review: Axiomatic Attribution for Deep Networks](https://github.com/youyinnn/masc_research_knowledge_base/issues/10)
 
