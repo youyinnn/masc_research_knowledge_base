@@ -3,6 +3,12 @@ const dir = ".";
 const auth = process.env.AUTH;
 const paper_reviews_dir = path.join(dir, "paper_review");
 const fs = require("fs");
+const {
+  zoneExist,
+  addZoneContent,
+  replaceZoneContent,
+  getZoneContent,
+} = require("./tools.js");
 
 const paper_review_list = [];
 fs.readdirSync(paper_reviews_dir).forEach((file) => {
@@ -127,42 +133,6 @@ function updateCul(paper_dir, issueBody, issueNumber) {
       console.log("Some other error: ", err.code);
     }
   });
-}
-
-function zoneExist(text, zone) {
-  return text.indexOf(zone.start) > -1;
-}
-
-function getZoneContent(text, zone) {
-  let startIdx = text.indexOf(zone.start);
-  if (startIdx > -1) {
-    let endIdx = text.indexOf(zone.end);
-    return text.substring(startIdx + zone.start.length, endIdx).trim();
-  } else {
-    return null;
-  }
-}
-
-function addZoneContent(text, zone, content) {
-  return (
-    text +
-    `\n\n-------\n` +
-    `\n${zone.start}\n` +
-    `\n${content}\n` +
-    `\n${zone.end}\n\n`
-  );
-}
-
-function replaceZoneContent(text, zone, replacement) {
-  let startIdx = text.indexOf(zone.start);
-  let endIdx = text.indexOf(zone.end);
-  return (
-    text.substring(0, startIdx + zone.start.length) +
-    "\n\n" +
-    replacement +
-    "\n\n" +
-    text.substring(endIdx, text.length)
-  );
 }
 
 const updateIssueBody = async function (issue_number, body) {

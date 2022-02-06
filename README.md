@@ -3,19 +3,9 @@
 1. `paper_review` will contains all of the paper reviews and catch-up-list.
 2.
 
-#### Goals
+<!-- issues start -->
 
-<!-- goals zone start -->
-
-<!-- goals zone end -->
-
-#### Tasks
-
-<!-- tasks zone start -->
-
-<!-- tasks zone end -->
-
----
+<!-- issues end -->
 
 <!--
 
