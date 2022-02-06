@@ -17,8 +17,6 @@
 
 ##### ![](https://img.shields.io:/badge/CurrentlyFocusing-D93F0B?style=for-the-badge)
 
-- [Paper review: Axiomatic Attribution for Deep Networks](https://github.com/youyinnn/masc_research_knowledge_base/issues/10)
-
 - [Knowledge gathering: XAI](https://github.com/youyinnn/masc_research_knowledge_base/issues/7)
 
 ##### ![](https://img.shields.io:/badge/Job-oriented-0D4EB9?style=for-the-badge)
