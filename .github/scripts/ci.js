@@ -146,10 +146,10 @@ function getZoneContent(text, zone) {
 function addZoneContent(text, zone, content) {
   return (
     text +
-    `\n-------\n` +
+    `\n\n-------\n` +
     `\n${zone.start}\n` +
     `\n${content}\n` +
-    `\n${zone.end}\n`
+    `\n${zone.end}\n\n`
   );
 }
 
