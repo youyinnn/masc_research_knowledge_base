@@ -71,32 +71,51 @@ function updateIssue(issue, paperName) {
   });
   if (paperNoteFilePath !== null) {
     console.log("note file exists");
+    let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/paper_review/${paperName}/${paperNoteFilePath}`;
     if (!zoneExist(issueBody, noteLinkZone)) {
-      console.log("create note link");
-      let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/paper_review/${paperName}/${paperNoteFilePath}`;
+      console.log(issue.title + " " + "create note link");
       newBody = addZoneContent(
         issueBody,
         noteLinkZone,
         `[Paper review](${encodeURI(url)})`
       );
       updateIssueBody(issue.number, newBody).finally(() => {
-        updateCul(paper_dir, newBody, issue.number);
+        updateCul(paper_dir, newBody, issue);
       });
     } else {
-      console.log("note link exist");
-      updateCul(paper_dir, issueBody, issue.number);
+      console.log(issue.title + " " + "note link exist");
+      let oldNoteLinkContent = getZoneContent(issueBody, noteLinkZone)
+        .trim()
+        .replace(/\s/g, "");
+      let newNoteLinkContent = `[Paper review](${encodeURI(url)})`.replace(
+        /\s/g,
+        ""
+      );
+      if (oldNoteLinkContent !== newNoteLinkContent) {
+        newBody = replaceZoneContent(
+          issueBody,
+          noteLinkZone,
+          newNoteLinkContent
+        );
+        updateIssueBody(issue.number, newBody).finally(() => {
+          updateCul(paper_dir, newBody, issue);
+        });
+      } else {
+        updateCul(paper_dir, issueBody, issue);
+      }
     }
   } else {
-    updateCul(paper_dir, issueBody, issue.number);
+    updateCul(paper_dir, issueBody, issue);
   }
 }
 
-function updateCul(paper_dir, issueBody, issueNumber) {
+function updateCul(paper_dir, issueBody, issue) {
+  let issueNumber = issue.number;
   let paper_catch_up_path = path.join(paper_dir, "catch-up-list.md");
 
   fs.stat(paper_catch_up_path, function (err, stat) {
     if (err == null) {
-      console.log("catch up file exists");
+      console.log(issue.title + " " + "catch up file exists");
       let culIfExist = getZoneContent(issueBody, culZone);
       let newBody = null;
       const culData = fs
@@ -104,23 +123,23 @@ function updateCul(paper_dir, issueBody, issueNumber) {
         .trim();
 
       if (culIfExist === null) {
-        console.log("create cul");
+        console.log(issue.title + " " + "create cul");
         newBody = addZoneContent(
           issueBody,
           culZone,
           `<details><summary>Catch-up knowledge</summary>\n\n${culData}\n\n</details>`
         );
       } else {
-        console.log("cul exist");
+        console.log(issue.title + " " + "cul exist");
         culIfExist = culIfExist
           .replace("<details><summary>Catch-up knowledge</summary>", "")
           .replace("</details>", "");
 
         // it is all about the fucking whitespace
         if (culIfExist.replace(/\s/g, "") === culData.replace(/\s/g, "")) {
-          console.log("same cul");
+          console.log(issue.title + " " + "same cul");
         } else {
-          console.log("diff cul");
+          console.log(issue.title + " " + "diff cul");
           let replcaement = `<details><summary>Catch-up knowledge</summary>\n\n${culData}\n\n</details>`;
           newBody = replaceZoneContent(issueBody, culZone, replcaement);
         }
@@ -130,7 +149,7 @@ function updateCul(paper_dir, issueBody, issueNumber) {
       }
     } else if (err.code === "ENOENT") {
     } else {
-      console.log("Some other error: ", err.code);
+      console.log(issue.title + " " + "some other error: ", err.code);
     }
   });
 }
