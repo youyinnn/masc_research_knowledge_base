@@ -190,7 +190,7 @@ function updateIssueForBook(issue, bookName) {
   let newBody = null;
   md_line.push("#### Review");
   fs.readdirSync(book_dir).forEach((file) => {
-    let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/book_review/${book_dir}/${file}`;
+    let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/${book_dir}/${file}`;
     md_line.push(`- [${file}](${encodeURI(url)})`);
   });
   let bookZoneContent = md_line.join("\n\n");

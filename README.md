@@ -17,6 +17,8 @@
 
 ##### ![](https://img.shields.io:/badge/CurrentlyFocusing-D93F0B?style=for-the-badge)
 
+- [Study: Interpretable Machine Learning](https://github.com/youyinnn/masc_research_knowledge_base/issues/11)
+
 - [Knowledge gathering: XAI](https://github.com/youyinnn/masc_research_knowledge_base/issues/7)
 
 ##### ![](https://img.shields.io:/badge/Job-oriented-0D4EB9?style=for-the-badge)
@@ -36,6 +38,8 @@
 - [For Research Knowledge](https://github.com/youyinnn/masc_research_knowledge_base/issues/2)
 
 ##### ![](https://img.shields.io:/badge/Project-oriented-d4c5f9?style=for-the-badge)
+
+- [Study: Interpretable Machine Learning](https://github.com/youyinnn/masc_research_knowledge_base/issues/11)
 
 - [Paper review: Axiomatic Attribution for Deep Networks](https://github.com/youyinnn/masc_research_knowledge_base/issues/10)
 
