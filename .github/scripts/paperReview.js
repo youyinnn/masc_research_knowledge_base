@@ -2,6 +2,7 @@ const path = require("path");
 const dir = ".";
 const auth = process.env.AUTH;
 const paper_reviews_dir = path.join(dir, "paper_review");
+const book_reviews_dir = path.join(dir, "book_review");
 const fs = require("fs");
 const {
   zoneExist,
@@ -13,6 +14,11 @@ const {
 const paper_review_list = [];
 fs.readdirSync(paper_reviews_dir).forEach((file) => {
   paper_review_list.push(String(file));
+});
+
+const book_review_list = [];
+fs.readdirSync(book_reviews_dir).forEach((file) => {
+  book_review_list.push(String(file));
 });
 
 const { Octokit } = require("@octokit/core");
@@ -39,9 +45,32 @@ const noteLinkZone = {
   end: "<!-- note end -->",
 };
 
+const bookLinkZone = {
+  start: "<!-- book_link start -->",
+  end: "<!-- book_link end -->",
+};
+
 getIssues().then((data) => {
   matchPaperReviewAndUpdateCatchUp(data);
+  matchBookReviewAndUpdateCatchUp(data);
 });
+
+function matchBookReviewAndUpdateCatchUp(data) {
+  for (let issue of data) {
+    let issueTitle = issue.title;
+    for (let labels of issue.labels) {
+      let labelName = labels.name;
+      if (labelName === "Book Reading") {
+        for (let book of book_review_list) {
+          if (issueTitle.toLowerCase().search(book.toLowerCase()) > -1) {
+            console.log(`\n====== For ${issueTitle} ======`);
+            updateIssueForBook(issue, book);
+          }
+        }
+      }
+    }
+  }
+}
 
 function matchPaperReviewAndUpdateCatchUp(data) {
   for (let issue of data) {
@@ -152,6 +181,34 @@ function updateCul(paper_dir, issueBody, issue) {
       console.log(issue.title + " " + "some other error: ", err.code);
     }
   });
+}
+
+function updateIssueForBook(issue, bookName) {
+  let issueBody = issue.body;
+  let book_dir = path.join(book_reviews_dir, bookName);
+  let md_line = [];
+  let newBody = null;
+  md_line.push("#### Review");
+  fs.readdirSync(book_dir).forEach((file) => {
+    let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/book_review/${book_dir}/${file}`;
+    md_line.push(`- [${file}](${encodeURI(url)})`);
+  });
+  let bookZoneContent = md_line.join("\n\n");
+  if (zoneExist(issueBody, bookLinkZone)) {
+    let oldBody = getZoneContent(issueBody, bookLinkZone);
+    if (oldBody.replace(/\s/gm, "") === bookZoneContent.replace(/\s/gm, "")) {
+      console.log(issue.title + " " + "book link zone same");
+    } else {
+      console.log(issue.title + " " + "book link zone diff");
+      newBody = replaceZoneContent(issueBody, bookLinkZone, bookZoneContent);
+    }
+  } else {
+    console.log(issue.title + " " + "book link zone create");
+    newBody = addZoneContent(issueBody, bookLinkZone, bookZoneContent);
+  }
+  if (newBody !== null) {
+    updateIssueBody(issue.number, newBody);
+  }
 }
 
 const updateIssueBody = async function (issue_number, body) {
