@@ -1,7 +1,7 @@
 #### MASc Research Knowledge Base
 
-1. `paper_review` will contains all of the paper reviews and catch-up-list.
-2.
+1. `paper_review` will contains all of the paper reviews and catch-up-list files.
+2. `book_review` wiil contains all of the book reviews and catch-up-list files.
 
 <!-- issues start -->
 
