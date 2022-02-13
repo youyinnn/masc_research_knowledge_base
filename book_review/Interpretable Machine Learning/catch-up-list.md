@@ -33,9 +33,6 @@ Step 4: Insert your values into the formula:
 
 **Answer**: The ith observation is at 8.2, so we round down to 8 (remembering that this formula is an estimate). The 8th number in the set is 13, which is the number where 20 percent of the values fall below it.
 
-
-
 #### Pearson Correlation Coefficient
 
 ....
-
