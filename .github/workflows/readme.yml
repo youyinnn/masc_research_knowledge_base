@@ -2,7 +2,7 @@ name: readme_update
 
 on:
   issues:
-    types: [labeled, unlabeled]
+    types: [labeled, unlabeled, edited]
 
   project_card:
     types: [converted, moved, deleted]
