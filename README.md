@@ -33,7 +33,7 @@
 
 - [Paper review: Self-supervised Learning for Large-scale Item Recommendations](https://github.com/youyinnn/masc_research_knowledge_base/issues/4)
 
-- [Paper review: Jincheng's Paper](https://github.com/youyinnn/masc_research_knowledge_base/issues/3)
+- [Paper review: The Analysis of Time Series Forecasting on Resource Provision of Cloud-based Game Servers](https://github.com/youyinnn/masc_research_knowledge_base/issues/3)
 
 - [For Research Knowledge](https://github.com/youyinnn/masc_research_knowledge_base/issues/2)
 
