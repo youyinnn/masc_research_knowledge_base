@@ -25,6 +25,7 @@ jobs:
           export NODE_PATH=$NODE_PATH:`npm root -g`
           npm i -g @octokit/core
           npm i -g prettier
+          git pull
           node .github/scripts/readme.js
           prettier --write .
 
