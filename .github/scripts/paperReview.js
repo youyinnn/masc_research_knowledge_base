@@ -92,40 +92,31 @@ function matchPaperReviewAndUpdateCatchUp(data) {
 function updateIssue(issue, paperName) {
   let issueBody = issue.body;
   let paper_dir = path.join(paper_reviews_dir, paperName);
-  let paperNoteFilePath = null;
+  let md_line = [];
   fs.readdirSync(paper_dir).forEach((file) => {
     if (file.endsWith(".pdf")) {
-      paperNoteFilePath = file;
+      let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/paper_review/${paperName}/${file}`;
+      md_line.push(`- [${file}](${encodeURI(url)})`);
     }
   });
-  if (paperNoteFilePath !== null) {
+  // console.log(md_line);
+  if (md_line.length > 0) {
+    let bookZoneContent = md_line.join("\n\n");
     console.log("note file exists");
-    let url = `https://github.com/youyinnn/masc_research_knowledge_base/blob/main/paper_review/${paperName}/${paperNoteFilePath}`;
     if (!zoneExist(issueBody, noteLinkZone)) {
       console.log(issue.title + " " + "create note link");
-      newBody = addZoneContent(
-        issueBody,
-        noteLinkZone,
-        `[Paper review](${encodeURI(url)})`
-      );
+      newBody = addZoneContent(issueBody, noteLinkZone, bookZoneContent);
       updateIssueBody(issue.number, newBody).finally(() => {
         updateCul(paper_dir, newBody, issue);
       });
     } else {
       console.log(issue.title + " " + "note link exist");
-      let oldNoteLinkContent = getZoneContent(issueBody, noteLinkZone)
-        .trim()
-        .replace(/\s/g, "");
-      let newNoteLinkContent = `[Paper review](${encodeURI(url)})`.replace(
-        /\s/g,
-        ""
-      );
-      if (oldNoteLinkContent !== newNoteLinkContent) {
-        newBody = replaceZoneContent(
-          issueBody,
-          noteLinkZone,
-          newNoteLinkContent
-        );
+      let oldNoteLinkContent = getZoneContent(issueBody, noteLinkZone);
+      if (
+        oldNoteLinkContent.replace(/\s/g, "") !==
+        bookZoneContent.replace(/\s/g, "")
+      ) {
+        newBody = replaceZoneContent(issueBody, noteLinkZone, bookZoneContent);
         updateIssueBody(issue.number, newBody).finally(() => {
           updateCul(paper_dir, newBody, issue);
         });
