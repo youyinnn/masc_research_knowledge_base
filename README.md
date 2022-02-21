@@ -39,13 +39,13 @@
 
 ##### ![](https://img.shields.io:/badge/Project-oriented-d4c5f9?style=for-the-badge)
 
+- [Paper Review: A Multidisciplinary Survey and Framework for Design and Evaluation of Explainable AI Systems](https://github.com/youyinnn/masc_research_knowledge_base/issues/13)
+
 - [Paper review: All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously](https://github.com/youyinnn/masc_research_knowledge_base/issues/12)
 
 - [Study: Interpretable Machine Learning](https://github.com/youyinnn/masc_research_knowledge_base/issues/11)
 
 - [Paper review: Axiomatic Attribution for Deep Networks](https://github.com/youyinnn/masc_research_knowledge_base/issues/10)
-
-- [Study: AI Explainability Whitepaper](https://github.com/youyinnn/masc_research_knowledge_base/issues/8)
 
 - [Knowledge gathering: XAI](https://github.com/youyinnn/masc_research_knowledge_base/issues/7)
 
