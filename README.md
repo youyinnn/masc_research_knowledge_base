@@ -39,7 +39,7 @@
 
 ##### ![](https://img.shields.io:/badge/Project-oriented-d4c5f9?style=for-the-badge)
 
-- [Paper Review: Visualizing Variable Importance and Variable Interaction Effects in Machine Learning Models](https://github.com/youyinnn/masc_research_knowledge_base/issues/16)
+- [Paper review: Visualizing Variable Importance and Variable Interaction Effects in Machine Learning Models](https://github.com/youyinnn/masc_research_knowledge_base/issues/16)
 
 - [Paper review: Visualizing the Effects of Predictor Variables in Black Box Supervised Learning Models](https://github.com/youyinnn/masc_research_knowledge_base/issues/15)
 
