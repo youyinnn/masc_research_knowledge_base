@@ -35,4 +35,12 @@ Step 4: Insert your values into the formula:
 
 #### Pearson Correlation Coefficient
 
+### Chapter 8
+
+#### Instance of Interest
+
+**Instances with greater appeal are called “Instance of Interest” (IOI).** IOI can be treated as a specific kind of Region of Interest (ROI) from a broader sense. From a narrower perspective, the definition we adopt in this paper are: “region” in ROI is comparable to “instance”, covering both thing and stuff, and the “interest” is restricted to the appeal when describing images.
+
+Refere to: [Instance of Interest Detection](https://dl.acm.org/doi/abs/10.1145/3343031.3350931#:~:text=Instances%20with%20greater%20appeal%20are,ROI)%20from%20a%20broader%20sense.)
+
 ....
