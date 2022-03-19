@@ -43,4 +43,16 @@ Step 4: Insert your values into the formula:
 
 Refere to: [Instance of Interest Detection](https://dl.acm.org/doi/abs/10.1145/3343031.3350931#:~:text=Instances%20with%20greater%20appeal%20are,ROI)%20from%20a%20broader%20sense.)
 
-....
+#### Binomial Coefficient
+
+二项式系数：
+
+$$
+{\displaystyle {\binom {n}{k}}={\frac {n!}{k!(n-k)!}}.}
+$$
+
+#### Marginal & Conditional Distribution
+
+A conditional distribution is a probability distribution for a sub-population. In other words, it shows the probability that a randomly selected item in a sub-population has a characteristic you’re interested in.
+
+<img width="863" alt="image" src="https://user-images.githubusercontent.com/23525754/159125456-4cfb81d1-236e-4c7c-9c30-9244ea0582d8.png">
