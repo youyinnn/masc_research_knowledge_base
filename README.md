@@ -31,13 +31,11 @@
 
 - [Paper review: A Comprehensive Survey on Graph Neural Networks](https://github.com/youyinnn/masc_research_knowledge_base/issues/5)
 
-- [Paper review: Self-supervised Learning for Large-scale Item Recommendations](https://github.com/youyinnn/masc_research_knowledge_base/issues/4)
-
-- [Paper review: The Analysis of Time Series Forecasting on Resource Provision of Cloud-based Game Servers](https://github.com/youyinnn/masc_research_knowledge_base/issues/3)
-
 - [For Research Knowledge](https://github.com/youyinnn/masc_research_knowledge_base/issues/2)
 
 ##### ![](https://img.shields.io:/badge/Project-oriented-d4c5f9?style=for-the-badge)
+
+- [Paper review: Anchors: High-Precision Model-Agnostic Explanations](https://github.com/youyinnn/masc_research_knowledge_base/issues/17)
 
 - [Paper review: Visualizing Variable Importance and Variable Interaction Effects in Machine Learning Models](https://github.com/youyinnn/masc_research_knowledge_base/issues/16)
 
