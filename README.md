@@ -27,6 +27,8 @@
 
 ##### ![](https://img.shields.io:/badge/Research-oriented-fbca04?style=for-the-badge)
 
+- [General Paper Reading](https://github.com/youyinnn/masc_research_knowledge_base/issues/18)
+
 - [Study: Self-supervised learning: The dark matter of intelligence](https://github.com/youyinnn/masc_research_knowledge_base/issues/6)
 
 - [Paper review: A Comprehensive Survey on Graph Neural Networks](https://github.com/youyinnn/masc_research_knowledge_base/issues/5)
